@@ -5,23 +5,25 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{74CF19BA-FBE2-42A4-9C0F-351E95E5E540}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{FBFCD1A9-1D03-4F90-9AD9-0636AB70BDFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\Api\Api.csproj", "{FBFCD1A9-1D03-4F90-9AD9-0636AB70BDFF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{E7632DF8-32E8-4CEC-A0ED-88A4847E3256}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{E7632DF8-32E8-4CEC-A0ED-88A4847E3256}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{A22CC30A-302C-4FB5-A0D3-A5217B6865BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{A22CC30A-302C-4FB5-A0D3-A5217B6865BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{B9A108C1-165D-41B7-B16A-307178656165}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{B9A108C1-165D-41B7-B16A-307178656165}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "src\Shared\Shared.csproj", "{ABF22185-E17E-4C24-BA2E-39E43F13829E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "src\Shared\Shared.csproj", "{ABF22185-E17E-4C24-BA2E-39E43F13829E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0039B08C-8D33-4805-A141-28AAEF64938A}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FBFCD1A9-1D03-4F90-9AD9-0636AB70BDFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -45,11 +47,17 @@ Global
 		{ABF22185-E17E-4C24-BA2E-39E43F13829E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF22185-E17E-4C24-BA2E-39E43F13829E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FBFCD1A9-1D03-4F90-9AD9-0636AB70BDFF} = {74CF19BA-FBE2-42A4-9C0F-351E95E5E540}
 		{E7632DF8-32E8-4CEC-A0ED-88A4847E3256} = {74CF19BA-FBE2-42A4-9C0F-351E95E5E540}
 		{A22CC30A-302C-4FB5-A0D3-A5217B6865BF} = {74CF19BA-FBE2-42A4-9C0F-351E95E5E540}
 		{B9A108C1-165D-41B7-B16A-307178656165} = {74CF19BA-FBE2-42A4-9C0F-351E95E5E540}
 		{ABF22185-E17E-4C24-BA2E-39E43F13829E} = {74CF19BA-FBE2-42A4-9C0F-351E95E5E540}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {495FAC57-8068-478B-AD4B-DCE0281135B2}
 	EndGlobalSection
 EndGlobal
