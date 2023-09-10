@@ -15,8 +15,8 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
-    public async Task<bool> Complete() =>
-        await _context.SaveChangesAsync() > 0;
+    public async Task<bool> Complete(CancellationToken cancellationToken) =>
+        await _context.SaveChangesAsync(cancellationToken) > 0;
 
     public void Dispose()
     {
