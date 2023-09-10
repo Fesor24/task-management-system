@@ -1,25 +1,17 @@
+using Api.Definitions.Extensions;
+using Api.Helpers;
 using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddServicesToContainer(builder.Configuration, typeof(Program));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseMiddleware<GlobalExceptionHandler>();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.ConfigureHttpPipelineAndRoutes(app.Configuration);
 
 app.Run();
