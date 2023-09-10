@@ -18,6 +18,24 @@ public static class MediatorExtensions
 
     }
 
+    [HttpPost]
+    public static RouteHandlerBuilder MediatorPost<TRequest, TResponse>(this WebApplication app, string route,
+        string endpointTagName) where TRequest: IRequest<TResponse>
+    {
+        route = $"api/{endpointTagName}/{route}";
+        var routeHandlerBuilder = app.MapPost(route, DelegateHandler<TRequest, TResponse>);
+        return AddToRouteHandlerBuilder<TResponse>(routeHandlerBuilder, endpointTagName);
+    }
+
+    [HttpDelete]
+    public static RouteHandlerBuilder MediatorDelete<TRequest, TResponse>(this WebApplication app, string route,
+        string endpointTagName) where TRequest: IRequest<TResponse>
+    {
+        route = $"api/{endpointTagName}/{route}";
+        var routeHandlerBuilder = app.MapDelete(route, DelegateHandlerWithAsParametersAttribute<TRequest, TResponse>);
+        return AddToRouteHandlerBuilder<TResponse>(routeHandlerBuilder, endpointTagName);
+    }
+
     internal static async Task<IResult> DelegateHandlerWithAsParametersAttribute<TRequest, TResponse>(IMediator mediator,
         [AsParameters] TRequest request) where TRequest: IRequest<TResponse>
     {
