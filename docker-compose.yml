@@ -1,11 +1,10 @@
 services:
     db:
         image: postgres
-        restart: always
         environment:
             POSTGRES_PASSWORD: taskmgtpw
         ports:
-            - 5432:5432
+            - 4422:5432
         volumes:
             - db:/var/lib/postgresql/data  
     adminer:
