@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using TaskEntity = Domain.Entities.Common.Task;
+using TaskEntity = Domain.Entities.Common.Task.Task;
 
 namespace Infrastructure.Context;
 public class ApplicationDbContext : DbContext
