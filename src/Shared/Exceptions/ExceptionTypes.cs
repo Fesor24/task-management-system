@@ -14,3 +14,8 @@ public partial class ApiFluentValidationException : Exception
 {
     public ApiFluentValidationException(string message) : base(message) { }
 }
+
+public partial class ApiUnauthorizedException : Exception
+{
+    public ApiUnauthorizedException(string message) : base(message) { }
+}
