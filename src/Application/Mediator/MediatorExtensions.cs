@@ -13,7 +13,7 @@ public static class MediatorExtensions
         string endpointTagName) where TRequest : IRequest<TResponse>
     {
         route = $"api/{endpointTagName}/{route}";
-        var routeHandlerBuilder = app.MapGet(route, DelegateHandler<TRequest, TResponse>);
+        var routeHandlerBuilder = app.MapGet(route, DelegateHandlerWithAsParametersAttribute<TRequest, TResponse>);
         return AddToRouteHandlerBuilder<TResponse>(routeHandlerBuilder, endpointTagName);
 
     }
@@ -24,6 +24,15 @@ public static class MediatorExtensions
     {
         route = $"api/{endpointTagName}/{route}";
         var routeHandlerBuilder = app.MapPost(route, DelegateHandler<TRequest, TResponse>);
+        return AddToRouteHandlerBuilder<TResponse>(routeHandlerBuilder, endpointTagName);
+    }
+
+    [HttpPut]
+    public static RouteHandlerBuilder MediatorPut<TRequest, TResponse>(this WebApplication app, string route,
+        string endpointTagName) where TRequest : IRequest<TResponse>
+    {
+        route = $"api/{endpointTagName}/{route}";
+        var routeHandlerBuilder = app.MapPut(route, DelegateHandler<TRequest, TResponse>);
         return AddToRouteHandlerBuilder<TResponse>(routeHandlerBuilder, endpointTagName);
     }
 
