@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Entities.Common.Project;
+using Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using TaskEntity = Domain.Entities.Common.Task.Task;
@@ -36,4 +37,5 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<TaskEntity> Tasks => Set<TaskEntity>();
     public DbSet<Project> Projects => Set<Project>();
+    public DbSet<User> Users => Set<User>();
 }
