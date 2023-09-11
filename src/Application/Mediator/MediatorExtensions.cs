@@ -68,8 +68,20 @@ public static class MediatorExtensions
     private static RouteHandlerBuilder AddToRouteHandlerBuilder<TResponse>(RouteHandlerBuilder routeHandler, 
         string endpointTagName)
     {
-        routeHandler.WithGroupName(EndpointGroupNames.MAIN)
-            .WithTags(endpointTagName);
+        if (endpointTagName.ToUpper() == EndpointGroupNames.ACCOUNT.ToUpper())
+        {
+            routeHandler
+                .WithGroupName(EndpointGroupNames.ACCOUNT)
+                .WithTags(EndpointGroupNames.ACCOUNT)
+                .AllowAnonymous();
+        }
+
+        else
+        {
+            routeHandler
+                .WithGroupName(EndpointGroupNames.MAIN)
+                .WithTags(endpointTagName);
+        }
 
         routeHandler.Produces<ApiResponse<TResponse>>();
 
