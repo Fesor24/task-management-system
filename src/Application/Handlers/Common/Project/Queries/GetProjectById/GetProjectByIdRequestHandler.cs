@@ -1,0 +1,31 @@
+﻿using AutoMapper;
+using Domain.Context;
+using ProjectEntity =  Domain.Entities.Common.Project.Project;
+using Infrastructure.Specifications.Project;
+using MediatR;
+using Shared.Exceptions;
+
+namespace Application.Handlers.Common.Project.Queries.GetProject;
+public sealed class GetProjectByIdRequestHandler : IRequestHandler<GetProjectByIdRequest, GetProjectResponse>
+{
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+
+    public GetProjectByIdRequestHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    {
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
+
+    public async Task<GetProjectResponse> Handle(GetProjectByIdRequest request, CancellationToken cancellationToken)
+    {
+        var projectSpec = new GetProjectByIdSpecification(request.ProjectId);
+
+        var project = await _unitOfWork.Repository<ProjectEntity>().GetAsync(projectSpec);
+
+        if (project is null)
+            throw new ApiNotFoundException($"Project with Id: {request.ProjectId} not found");
+
+        return _mapper.Map<GetProjectResponse>(project);
+    }
+}
