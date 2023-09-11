@@ -1,20 +1,20 @@
 ﻿namespace Domain.Entities.Common.Task;
 public record DueDate
 {
-    private static DateTimeOffset _defaultDate = default;
+    private static DateTime _defaultDate = default;
 
-    private DueDate(DateTimeOffset value) => Value = value;
+    private DueDate(DateTime value) => Value = value;
 
-    public DateTimeOffset Value { get; init; }
+    public DateTime Value { get; init; }
 
-    public static DueDate Create(DateTimeOffset value)
+    public static DueDate Create(DateTime value)
     {
         if(value == _defaultDate)
         {
             return null;
         }
          
-        if(value < DateTimeOffset.UtcNow)
+        if(value < DateTime.UtcNow)
         {
             return null;
         }

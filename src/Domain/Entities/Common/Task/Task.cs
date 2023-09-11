@@ -1,4 +1,7 @@
-﻿using Domain.Enums;
+﻿using ProjectEntity =  Domain.Entities.Common.Project.Project;
+using Domain.Enums;
+using Domain.Entities.Common.Project;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities.Common.Task;
 public class Task : AuditableEntity
@@ -8,20 +11,35 @@ public class Task : AuditableEntity
         
     }
 
-    public Task(TaskId taskId, string title, string description, DueDate duedate, Status status, Priority priority)
+    public Task(Body body, DueDate duedate, Status status, 
+        Priority priority, int? projectId)
     {
-        TaskId = taskId;
-        Title = title;
-        Description = description;
-        DueDate = duedate;
+        Body = body;
+        DueDate = duedate.Value;
+        Status = status;
+        Priority = priority;
+        ProjectId = projectId;
+    }
+
+    public int TaskId { get; private set; }
+
+    [Required]
+    public Body Body { get; private set; }
+    public DateTime DueDate { get; private set; }
+    public Status Status { get; private set; }
+    public Priority Priority { get; private set; }
+    public int? ProjectId { get; private set; }
+    public ProjectEntity Project { get; private set; }
+
+    public void Update(Body body,
+        DueDate dueDate, Status status, Priority priority) 
+    {
+        Body = body;
+        DueDate = dueDate.Value;
         Status = status;
         Priority = priority;
     }
 
-    public TaskId TaskId { get; private set; }
-    public string Title { get; private set; }
-    public string Description { get; private set; }
-    public DueDate DueDate { get; private set; }
-    public Status Status { get; private set; }
-    public Priority Priority { get; private set; }
+    public void AssignProject(int? projectId) => 
+        ProjectId = projectId;
 }
