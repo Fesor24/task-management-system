@@ -28,7 +28,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public async Task<T> GetAsync(ISpecification<T> spec) =>
         await ApplySpecification(spec).FirstOrDefaultAsync();
-
+   
     public bool Update(T entity)
     {
         _context.Attach(entity);
