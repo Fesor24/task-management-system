@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TaskEntity = Domain.Entities.Common.Task.Task;
+using Domain.Entities.Common.Project;
 
 namespace Infrastructure.EntityConfigurations.Common;
 public class TaskConfiguration : IEntityTypeConfiguration<TaskEntity>
@@ -12,13 +13,10 @@ public class TaskConfiguration : IEntityTypeConfiguration<TaskEntity>
 
         builder.HasKey(x => x.TaskId);
 
-        builder.Property(x => x.TaskId).HasConversion(
-            task => task.Value,
-            value => new TaskId(value));
-
-        builder.Property(x => x.DueDate).HasConversion(
-            dueDate => dueDate.Value,
-            value => DueDate.Create(value)
-            );
+        builder.OwnsOne(x => x.Body, bodyBuilder =>
+        {
+            bodyBuilder.Property(x => x.Title).HasMaxLength(200).IsRequired();
+            bodyBuilder.Property(x => x.Description).HasMaxLength(700).IsRequired();
+        });
     }
 }
