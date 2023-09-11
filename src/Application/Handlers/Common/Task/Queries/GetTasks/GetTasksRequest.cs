@@ -2,6 +2,4 @@
 using MediatR;
 
 namespace Application.Handlers.Common.Task.Queries.GetTasks;
-public class GetTasksRequest : IRequest<IReadOnlyList<GetTaskResponse>>
-{
-}
+public record GetTasksRequest : IRequest<IReadOnlyList<GetTaskResponse>>;
