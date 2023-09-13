@@ -14,4 +14,6 @@ app.UseMiddleware<GlobalExceptionHandler>();
 
 app.ConfigureHttpPipelineAndRoutes(app.Configuration);
 
+app.UseMiddleware<JobsMiddleware>();
+
 app.Run();
