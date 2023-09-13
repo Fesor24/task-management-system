@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.Common.Notification;
 using Domain.Entities.Common.Project;
 using Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -38,4 +39,5 @@ public class ApplicationDbContext : DbContext
     public DbSet<TaskEntity> Tasks => Set<TaskEntity>();
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<User> Users => Set<User>();
+    public DbSet<Notification> Notifications => Set<Notification>();
 }
