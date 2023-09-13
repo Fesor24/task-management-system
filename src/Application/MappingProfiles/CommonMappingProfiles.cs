@@ -3,6 +3,8 @@ using AutoMapper;
 using TaskEntity = Domain.Entities.Common.Task.Task;
 using ProjectEntity = Domain.Entities.Common.Project.Project;
 using Application.Handlers.Common.Project.Queries.GetProject;
+using Domain.Entities.Common.Notification;
+using Application.Handlers.Common.Notifications.Query.GetNotificationsByUserId;
 
 namespace Application.MappingProfiles;
 public class CommonMappingProfiles : Profile
@@ -15,5 +17,7 @@ public class CommonMappingProfiles : Profile
             .ForMember(x => x.ProjectName, o => o.MapFrom(t => t.Project.Name));
 
         CreateMap<ProjectEntity, GetProjectResponse>();
+
+        CreateMap<Notification, GetNotificationResponse>();
     }
 }
