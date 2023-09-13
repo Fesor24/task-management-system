@@ -12,7 +12,7 @@ public class Task : AuditableEntity
         
     }
 
-    public Task(Body body, DueDate duedate, Status status, 
+    public Task(Body body, DueDate duedate, Enums.TaskStatus status, 
         Priority priority, int? projectId, int userId)
     {
         Body = body;
@@ -28,7 +28,7 @@ public class Task : AuditableEntity
     [Required]
     public Body Body { get; private set; }
     public DateTime DueDate { get; private set; }
-    public Status Status { get; private set; }
+    public Enums.TaskStatus Status { get; private set; }
     public Priority Priority { get; private set; }
     public int? ProjectId { get; private set; }
     public ProjectEntity Project { get; private set; }
@@ -36,7 +36,7 @@ public class Task : AuditableEntity
     public User User { get; private set; }
 
     public void Update(Body body,
-        DueDate dueDate, Status status, Priority priority) 
+        DueDate dueDate, Enums.TaskStatus status, Priority priority) 
     {
         Body = body;
         DueDate = dueDate.Value;
