@@ -18,6 +18,10 @@ public class RegisterCommandValidator: AbstractValidator<RegisterCommand>
             .NotNull()
             .WithMessage("Email can not be null or empty");
 
+        RuleFor(x => x.Email)
+            .EmailAddress()
+            .WithMessage("Invalid email address");
+
         RuleFor(x => x.Password)
             .NotEmpty()
             .NotNull()
