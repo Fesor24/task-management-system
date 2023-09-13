@@ -3,4 +3,4 @@ using Domain.Enums;
 using MediatR;
 
 namespace Application.Handlers.Common.Task.Queries.GetTaskByStatus;
-public record GetTasksByStatusRequest(Status Status) : IRequest<IReadOnlyList<GetTaskResponse>>;
+public record GetTasksByStatusRequest(Domain.Enums.TaskStatus Status) : IRequest<IReadOnlyList<GetTaskResponse>>;
