@@ -6,8 +6,8 @@ namespace Application.Handlers.Common.Task.Commands.Create;
 public record CreateTaskCommand(
     string Title, 
     string Description, 
-    DateTime DueDate, 
-    Status Status,
+    DateTime DueDate,
+    Domain.Enums.TaskStatus Status,
     Priority Priority,
     int? ProjectId) : IRequest<int>;
 

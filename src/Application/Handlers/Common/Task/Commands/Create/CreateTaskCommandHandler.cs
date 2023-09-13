@@ -1,5 +1,6 @@
 ﻿using Domain.Context;
 using Domain.Entities.Common.Task;
+using Domain.Services.Notification;
 using Domain.Services.Users;
 using MediatR;
 using TaskEntity = Domain.Entities.Common.Task.Task;
@@ -9,11 +10,14 @@ public sealed class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IUserContext _userContext;
+    private readonly INotificationService _notificationService;
 
-    public CreateTaskCommandHandler(IUnitOfWork unitOfWork, IUserContext userContext)
+    public CreateTaskCommandHandler(IUnitOfWork unitOfWork, IUserContext userContext,
+        INotificationService notificationService)
     {
         _unitOfWork = unitOfWork;
         _userContext = userContext;
+        _notificationService = notificationService;
     }
 
     public async Task<int> Handle(CreateTaskCommand request, 
@@ -30,7 +34,10 @@ public sealed class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand
 
         await _unitOfWork.Repository<TaskEntity>().AddAsync(task);
 
-        await _unitOfWork.Complete(cancellationToken);
+        var result = await _unitOfWork.Complete();
+
+        if (result)
+            await _notificationService.TaskAssignment(task.Body.Title, task.Status.ToString(), task.TaskId);
 
         return task.TaskId;
     }
