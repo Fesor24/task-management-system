@@ -1,0 +1,26 @@
+Database setup
+
+With Docker:
+1. Ensure docker is installed on your system
+2. Navigate to root directory of project, where a 'docker-compose.yml' file is
+3. Open a command prompt in the directory, type 'docker-compose up -d'
+4. If the process was successful, you should have your database set up
+5. Open the project, at the bottom left, you should see a Package Manager Console, if you don't see, at the top bar, click on Tools > Nuget Package Manager > Package Manager Console
+6. When the console opens, type 'update-database'
+7. Now your database has been set up with the relevant tables. When you run the project, the necessary tables for hangfire will be created
+
+ If you want to view the database, you can go to http://localhost:8080, we would be using adminer for this
+ Enter the following credentials: 
+ - System: PostgreSQL
+ - Server: db
+ - Username: postgres
+ - Password: taskmgtpw,
+ - Database: task_mgt
+
+Without Docker (you have postgres installed):
+1. Open the project
+2. Navigate to appsettings.development.json
+3. Where you see default connection, change the Server from 'localhost:4422' to 'localhost:5432'
+4. Change the password to your postgres password
+Follow step 5 to 7 above.
+
