@@ -21,4 +21,10 @@ public class Project
 
     public string Description { get; private set; }
     public List<TaskEntity> Tasks { get; set; }
+
+    public void Update(string name, string description)
+    {
+        Name = name;
+        Description = description;
+    }
 }
