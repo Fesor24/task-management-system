@@ -1,6 +1,8 @@
-﻿using Application.Handlers.Common.Notifications.Query.GetNotificationsByUserId;
+﻿using Application.Handlers.Common.Notifications.Command.Delete;
+using Application.Handlers.Common.Notifications.Query.GetNotificationsByUserId;
 using Application.Handlers.Common.Project.Commands.Create;
 using Application.Handlers.Common.Project.Commands.Delete;
+using Application.Handlers.Common.Project.Commands.Update;
 using Application.Handlers.Common.Project.Queries.GetProject;
 using Application.Handlers.Common.Project.Queries.GetProjects;
 using Application.Handlers.Common.Task.Commands.AssignProject;
@@ -35,8 +37,10 @@ public static class CommonEndpoints
         app.MediatorGet<GetProjectByIdRequest, GetProjectResponse>("Project", ENDPOINT);
         app.MediatorGet<GetProjectsRequest, IReadOnlyList<GetProjectResponse>>("Projects", ENDPOINT);
         app.MediatorDelete<DeleteProjectCommand, Unit>("Project", ENDPOINT);
+        app.MediatorPut<UpdateProjectCommand, Unit>("Project", ENDPOINT);
 
         app.MediatorGet<GetNotificationsByUserIdRequest, IReadOnlyList<GetNotificationResponse>>("Notifications",
             ENDPOINT);
+        app.MediatorDelete<DeleteNotificationCommand, Unit>("Notification", ENDPOINT);
     }
 }
