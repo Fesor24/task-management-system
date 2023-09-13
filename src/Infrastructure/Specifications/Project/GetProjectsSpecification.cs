@@ -3,7 +3,7 @@
 namespace Infrastructure.Specifications.Project;
 public class GetProjectsSpecification : BaseSpecification<ProjectEntity>
 {
-    public GetProjectsSpecification()
+    public GetProjectsSpecification(int userId) : base(x => x.UserId == userId)
     {
         
     }
