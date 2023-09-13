@@ -1,4 +1,5 @@
 ﻿using Domain.Context;
+using Domain.Services.Users;
 using Infrastructure.Specifications.Task;
 using MediatR;
 using Shared.Exceptions;
@@ -8,15 +9,17 @@ namespace Application.Handlers.Common.Task.Commands.AssignProject;
 public sealed class AssignProjectCommandHandler : IRequestHandler<AssignProjectCommand, Unit>
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserContext _userContext;
 
-    public AssignProjectCommandHandler(IUnitOfWork unitOfWork)
+    public AssignProjectCommandHandler(IUnitOfWork unitOfWork, IUserContext userContext)
     {
         _unitOfWork = unitOfWork;
+        _userContext = userContext;
     }
 
     public async Task<Unit> Handle(AssignProjectCommand request, CancellationToken cancellationToken)
     {
-        var taskSpec = new GetTaskByIdSpecification(request.TaskId);
+        var taskSpec = new GetTaskByIdSpecification(request.TaskId, _userContext.UserId);
 
         var task = await _unitOfWork.Repository<TaskEntity>().GetAsync(taskSpec);
 
