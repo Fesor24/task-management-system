@@ -17,7 +17,7 @@ public class ApplicationLayerDefinition : IDefinition
     {
         IEnumerable<Assembly> domainAssemblies = new List<Type>()
         {
-            services.AddCoreApplication()
+            services.AddCoreApplication(configuration)
         }.Select(t => t.Assembly);
 
         services
