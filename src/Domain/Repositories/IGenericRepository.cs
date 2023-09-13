@@ -9,6 +9,8 @@ public interface IGenericRepository<T> where T: class
 
     Task AddAsync(T entity);
 
+    Task AddRangeAsync(List<T> entities);
+
     bool Update(T entity);
 
     bool Delete(T entity);
