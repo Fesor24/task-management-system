@@ -17,6 +17,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task AddAsync(T entity) => 
         await _context.Set<T>().AddAsync(entity);
 
+    public async Task AddRangeAsync(List<T> entities) =>
+        await _context.Set<T>().AddRangeAsync(entities);
+
     public bool Delete(T entity)
     {
         _context.Set<T>().Remove(entity);
