@@ -6,6 +6,7 @@ using TaskEntity = Domain.Entities.Common.Task.Task;
 using Domain.Entities.Common.Task;
 using Domain.Services.Notification;
 using Domain.Services.Users;
+using Domain.Enums;
 
 namespace Application.Handlers.Common.Task.Commands.Update;
 public sealed class UpdateTaskCommandHadler : IRequestHandler<UpdateTaskCommand, Unit>
@@ -31,8 +32,16 @@ public sealed class UpdateTaskCommandHadler : IRequestHandler<UpdateTaskCommand,
         if (task is null)
             throw new ApiNotFoundException($"Task with Id: {request.TaskId} not found");
 
-        task.Update(new Body(request.Title, request.Description), DueDate.Create(request.DueDate), 
-            request.Status, request.Priority);
+        string title = string.IsNullOrWhiteSpace(request.Title) ? task.Body.Title : request.Title;
+        string description = string.IsNullOrWhiteSpace(request.Description) ? task.Body.Description : 
+            request.Description;
+
+        Priority priority = request.Priority is null ? task.Priority : request.Priority.Value;
+
+        Domain.Enums.TaskStatus status = request.Status is null ? task.Status : request.Status.Value;
+
+        task.Update(new Body(title, description), DueDate.Create(request.DueDate), 
+            status, priority);
 
         _unitOfWork.Repository<TaskEntity>().Update(task);
 
