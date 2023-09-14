@@ -25,4 +25,7 @@ public class Notification : AuditableEntity
     public int TaskId { get; private set; }
     public NotificationStatus NotificationStatus { get; private set; }
     public NotificationType NotificationType { get; private set; }
+
+    public void UpdateStatus(NotificationStatus status) =>
+        NotificationStatus = status;
 }
