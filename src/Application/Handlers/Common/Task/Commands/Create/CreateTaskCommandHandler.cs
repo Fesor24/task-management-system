@@ -1,8 +1,10 @@
 ﻿using Domain.Context;
 using Domain.Entities.Common.Task;
+using Domain.Enums;
 using Domain.Services.Notification;
 using Domain.Services.Users;
 using MediatR;
+using Shared.Exceptions;
 using TaskEntity = Domain.Entities.Common.Task.Task;
 
 namespace Application.Handlers.Common.Task.Commands.Create;
@@ -23,6 +25,12 @@ public sealed class CreateTaskCommandHandler : IRequestHandler<CreateTaskCommand
     public async Task<int> Handle(CreateTaskCommand request, 
         CancellationToken cancellationToken)
     {
+        if (!Enum.IsDefined(typeof(Priority), request.Priority))
+            throw new ApiBadRequestException("Invalid value passed to priority");
+
+        if (!Enum.IsDefined(typeof(Domain.Enums.TaskStatus), request.Status))
+            throw new ApiBadRequestException("Invalid value passed to task status");
+
         var task = new TaskEntity(
             new Body(request.Title, request.Description),
             DueDate.Create(request.DueDate),

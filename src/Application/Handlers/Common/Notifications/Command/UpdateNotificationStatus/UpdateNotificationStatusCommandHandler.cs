@@ -1,5 +1,6 @@
 ﻿using Domain.Context;
 using Domain.Entities.Common.Notification;
+using Domain.Enums;
 using Domain.Services.Users;
 using Infrastructure.Specifications.Notification;
 using MediatR;
@@ -26,7 +27,10 @@ public class UpdateNotificationStatusCommandHandler : IRequestHandler<UpdateNoti
         if (notification is null)
             throw new ApiNotFoundException($"Notification with id: {request.NotificationId} not found");
 
-        notification.UpdateStatus(Domain.Enums.NotificationStatus.Read);
+        if (!Enum.IsDefined(typeof(NotificationStatus), request.Status))
+            throw new ApiBadRequestException("Invalid notification Status");
+
+        notification.UpdateStatus(request.Status);
 
         _unitOfWork.Repository<Notification>().Update(notification);
 
