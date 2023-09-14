@@ -40,6 +40,12 @@ public sealed class UpdateTaskCommandHadler : IRequestHandler<UpdateTaskCommand,
 
         Domain.Enums.TaskStatus status = request.Status is null ? task.Status : request.Status.Value;
 
+        if (!Enum.IsDefined(typeof(Priority), priority))
+            throw new ApiBadRequestException("Invalid value passed to priority");
+
+        if (!Enum.IsDefined(typeof(Domain.Enums.TaskStatus), status))
+            throw new ApiBadRequestException("Invalid value passed to task status");
+
         task.Update(new Body(title, description), DueDate.Create(request.DueDate), 
             status, priority);
 

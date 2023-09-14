@@ -11,3 +11,13 @@ public record UpdateTaskCommand(int TaskId,
     DateTime DueDate) : 
     IRequest<Unit>;
 
+public class UpdateTaskCommandValidator : AbstractValidator<UpdateTaskCommand>
+{
+    public UpdateTaskCommandValidator()
+    {
+        RuleFor(x => x.DueDate)
+            .GreaterThanOrEqualTo(DateTime.UtcNow)
+            .WithMessage("Due date can not be in the past");
+    }
+}
+
