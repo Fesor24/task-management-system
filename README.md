@@ -2,7 +2,7 @@
 
 **1. Install .NET 7 SDK** 
 
-Make sure you have .Net 7 Sdk installed on your computer. This project uses .NET 7.0. You can download if from the official (website)[https://dotnet.microsoft.com/en-us/download/dotnet/7.0] if you haven't already.
+Make sure you have .Net 7 Sdk installed on your computer. This project uses .NET 7.0. You can download if from the official [website](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) if you haven't already.
 
 **2 Clone the Project**
 
@@ -18,7 +18,7 @@ Open the project in any Integrated Development Environment(IDE) of your choice (
 
 **4 Run the Project**
 
-After successfullt setting up the database, you can run the project. When you do, your browser should open and you should be redirected to Swagger.
+After successfully setting up the database, you can run the project. When you do, your browser should open and you should be redirected to Swagger.
 
 **5 Register an account**
 
