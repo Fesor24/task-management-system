@@ -8,12 +8,12 @@ builder.Services.AddInfrastructureServices(builder.Configuration);
 
 builder.Services.AddServicesToContainer(builder.Configuration, typeof(Program));
 
+builder.Services.AddHostedService<BackgroundJobsService>();
+
 var app = builder.Build();
 
 app.UseMiddleware<GlobalExceptionHandler>();
 
 app.ConfigureHttpPipelineAndRoutes(app.Configuration);
-
-app.UseMiddleware<JobsMiddleware>();
 
 app.Run();
